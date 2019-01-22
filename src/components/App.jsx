@@ -4,20 +4,43 @@ import $ from 'jquery';
 class App extends React.Component {
   constructor(props) {
       super(props);
+      this.state = {
+        name: '',
+        message: '',
+        response: ''
+      };
+      this.handleName = this.handleName.bind(this);
+      this.handleName = this.handleMessage.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleName(e) {
+    this.setState({name: e.target.value});
+  }
+
+  handleMessage(e) {
+    this.setState({message: e.target.value});
+  }
+
+  handleSubmit(e) {
+    alert('this works!')
+    event.preventDefault();
+  }
+
+
   render() {
     return (
       <div>
       <h3>Server Response:</h3>
-      <h3>Response Goes Here!</h3>
+      <div>{this.state.response}</div>
       <form>
         <label>
           Name:
-          <input name="test1" message="test2"/>
+          <input type='text' value={this.state.name} onChange={this.handleName}/>
         </label>
         <label>
           Message:
-          <input/>
+          <input type='text' value={this.state.message} onChange={this.handleMessage}/>
         </label>
         <button>Send Message</button>
       </form>
